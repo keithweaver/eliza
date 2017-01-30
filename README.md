@@ -8,14 +8,11 @@ This is an implementation of Eliza built in pure Javascript. I wanted to build i
 
 You have two options:
 
-
-Option #1:
-
-It's hosted on Github Pages at http://kweaver00.github.io/.
+**Option #1:**
+It's hosted on Github Pages at http://kweaver00.github.io/eliza/.
 
 
-Option #2:
-
+**Option #2:**
 Just open the index HTML file on your local machine, so [this one](./index.html).
 
 
