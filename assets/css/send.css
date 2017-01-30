@@ -1,0 +1,48 @@
+.send-wrapper{
+	position: fixed;
+	bottom: 0px;
+	
+	/* center the element */
+	right: 0;
+	left: 0;
+	margin-right: auto;
+	margin-left: auto;
+
+
+}
+.send-inner-wrapper{
+	padding-bottom: 10px;
+
+	padding-top: 5px;
+
+	background-color: white;
+	border-top-color: #d8d8d8;
+	border-top-style: solid;
+	border-top-width: 1px;
+}
+.send-textbox{
+	font-family: 'Lato', sans-serif;
+	font-size: 16px;
+
+	width: 100%;
+	min-width: 100%;
+	max-width: 100%;
+
+	padding: 3px 4px;
+}
+.send-message-help-below-text{
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 10px;
+}
+.send-message-help-text{
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 14px;
+	
+
+}
+.bottom-label{
+	padding-top: 10px;
+	font-size: 12px;
+	font-family: 'Source Sans Pro', sans-serif;
+
+}

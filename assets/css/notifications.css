@@ -1,0 +1,40 @@
+#notification-area{
+	position: fixed;
+	left: 15px;
+	top: 10px;
+
+	width: 200px;
+	z-index: 100;
+}
+.notification-wrapper{
+	width: 100%;
+
+	padding:4px 8px;
+	border-radius: 5px;
+
+	margin-bottom: 6px;
+}
+.positive-notification{
+	background-color: #D8F6CE;
+}
+.info-notification{
+	background-color: #F5D0A9;
+}
+.negative-notification{
+	background-color: #8A0808;
+}
+.notification-text{
+	font-family: 'Lato', sans-serif;
+	font-size: 12px;
+
+}
+.notification-hiding-text{
+	font-family: 'Lato', sans-serif;
+	font-size: 10px;	
+}
+.dark-text{
+	color: #2e2e2e;
+}
+.light-text{
+	color: white;
+}

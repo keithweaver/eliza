@@ -1,0 +1,79 @@
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<title>Eliza</title>
+
+<link rel="stylesheet" href="./assets/css/main.css"/>
+<link rel="stylesheet" href="./assets/css/send.css"/>
+<link rel="stylesheet" href="./assets/css/chat.css"/>
+<link rel="stylesheet" href="./assets/css/notifications.css"/>
+
+</head>
+<body id="body">
+<!-- 
+Credit:
+http://www.flaticon.com/free-icon/doctor_194824
+-->
+
+<div class="container">
+	<div class="row chat-row">
+		<div class="col-md-8 col-md-offset-2">
+			
+			<span id="chat-area"></span>
+			
+
+			<!--
+
+			<div class="chat-message-outter-wrapper">
+				<img src="./assets/imgs/guy.png" class="chat-message-icon">
+				<div class="chat-message-wrapper eliza-message">
+					<p class="chat-message-text">Hi, I'm Eliza. This would be example text sent by eliza. This would be example text sent by eliza. This would be example text sent by eliza. This would be example text sent by eliza</p>
+					<p class="chat-user-text">Keith</p>
+				</div>
+			</div>
+			<div class="chat-message-outter-wrapper text-right">
+				
+				<div class="chat-message-wrapper you-message">
+					<p class="chat-message-text">Hi, I'm Eliza. This would be example text sent by eliza. This would be example text sent by eliza. This would be example text sent by eliza. This would be example text sent by eliza</p>
+					<p class="chat-user-text">Keith</p>
+				</div>
+				<img src="./assets/imgs/laptop.png" class="chat-message-icon">
+			</div>
+			-->
+			
+
+
+		</div>
+	</div>
+</div>
+<div class="container send-wrapper">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2 send-inner-wrapper">
+			<p class="send-message-help-text">Talk to Eliza by typing into the textbox below:</p>
+			<input type="text" class="send-textbox" />
+			<p class="send-message-help-below-text text-right">Send your message by pressing "Enter"</p>
+			<p class="bottom-label text-center">Built by <a href="https://github.com/kweaver00" target="_blank">Keith Weaver</a>. Modify it by forking the <a href="https://github.com/kweaver00/eliza" target="_blank">repo</a>.</p>
+		</div>
+	</div>
+</div>
+
+<span id="notification-area">
+	<!-- <div class="notification-wrapper positive-notification">
+		<p class="notification-text dark-text">Test and mroe and mroe and mroe and mroe</p>
+	</div>
+	<div class="notification-wrapper negative-notification">
+		<p class="notification-text light-text">Test and mroe and mroe and mroe and mroe</p>
+	</div> -->
+</span>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="./js/eliza.js"></script>
+<script src="./js/actions.js"></script>
+<script src="./js/demo.js"></script>
+<script src="./js/notifications.js"></script>
+</body>	
+</html>
