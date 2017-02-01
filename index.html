@@ -18,37 +18,21 @@ Credit:
 http://www.flaticon.com/free-icon/doctor_194824
 -->
 
+<!-- 
+Chat Content goes here 
+It's loaded in dynamically with JS
+-->
 <div class="container">
 	<div class="row chat-row">
 		<div class="col-md-8 col-md-offset-2">
 			
 			<span id="chat-area"></span>
-			
-
-			<!--
-
-			<div class="chat-message-outter-wrapper">
-				<img src="./assets/imgs/guy.png" class="chat-message-icon">
-				<div class="chat-message-wrapper eliza-message">
-					<p class="chat-message-text">Hi, I'm Eliza. This would be example text sent by eliza. This would be example text sent by eliza. This would be example text sent by eliza. This would be example text sent by eliza</p>
-					<p class="chat-user-text">Keith</p>
-				</div>
-			</div>
-			<div class="chat-message-outter-wrapper text-right">
-				
-				<div class="chat-message-wrapper you-message">
-					<p class="chat-message-text">Hi, I'm Eliza. This would be example text sent by eliza. This would be example text sent by eliza. This would be example text sent by eliza. This would be example text sent by eliza</p>
-					<p class="chat-user-text">Keith</p>
-				</div>
-				<img src="./assets/imgs/laptop.png" class="chat-message-icon">
-			</div>
-			-->
-			
-
-
+	
 		</div>
 	</div>
 </div>
+
+<!-- Area to send a message and ownership info -->
 <div class="container send-wrapper">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2 send-inner-wrapper">
@@ -60,20 +44,21 @@ http://www.flaticon.com/free-icon/doctor_194824
 	</div>
 </div>
 
+<!-- notifications.js appends notification html elements to this -->
 <span id="notification-area">
-	<!-- <div class="notification-wrapper positive-notification">
-		<p class="notification-text dark-text">Test and mroe and mroe and mroe and mroe</p>
-	</div>
-	<div class="notification-wrapper negative-notification">
-		<p class="notification-text light-text">Test and mroe and mroe and mroe and mroe</p>
-	</div> -->
 </span>
 
+
+<!-- Common Libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Main Eliza Script -->
 <script src="./js/eliza.js"></script>
+<!-- Script that manages user actions -->
 <script src="./js/actions.js"></script>
+<!-- Script that has some demos and can be run based on user actions -->
 <script src="./js/demo.js"></script>
+<!-- Scripts that generates html to notify user -->
 <script src="./js/notifications.js"></script>
 </body>	
 </html>
