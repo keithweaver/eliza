@@ -15,3 +15,13 @@ function runDemo1(){
 	}, 6000);
 	
 }
+function printResponses(){
+	for (var word in responses) {
+		if (responses.hasOwnProperty(word)) {
+			console.log(word);
+			for(var i = 0;i < responses[word].length;i++){
+				console.log("    " + responses[word][i]);
+			}
+		}
+	}
+}

@@ -25,7 +25,7 @@ function createPositiveNotification(message, seconds){
 	createNotification(message, "positive", seconds);
 }
 function createNotification(message, type, seconds){
-	console.log("createNotification(" + message + "," + type + ")");
+	//console.log("createNotification(" + message + "," + type + ")");
 	currentNotifications.push({ message : message, cyclesRemaining : seconds, type : type });
 	var typeClass = "";
 	var typeText = "";
