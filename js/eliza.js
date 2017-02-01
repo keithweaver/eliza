@@ -220,7 +220,6 @@ function startElizaChat(){
 	chatHistory.push({ isEliza : true, content : initialMessage });
 	displayChat();
 
-	console.log(responses);
 }
 /*
  * This function does what it kind of says above.
@@ -239,7 +238,6 @@ function getKeywordsByWeight(){
 		var weight = responses[responseKeyword].weight;
 		tempKeywords[responseKeyword] = weight;
 
-		//console.log(weight);
 		if(!weights.includes(weight)){
 			weights.push(weight);
 		}
@@ -248,9 +246,7 @@ function getKeywordsByWeight(){
 	
 	//Add similar words
 	for(var wordWithResponse in synonyms){
-		//console.log("loop");
 		if(wordWithResponse in tempKeywords){
-			//console.log("inif");
 			var weight = tempKeywords[wordWithResponse];
 
 			for(var i = 0;i < synonyms[wordWithResponse].length;i++){
@@ -291,7 +287,6 @@ function sendElizaNewMessage(newMessage){
 	displayChat();
 	clearSendTextbox();
 
-	console.log(conversationOver);
 	if(!conversationOver){
 		//Makes it lower case
 		newMessage = processInput(newMessage);
@@ -322,9 +317,7 @@ function analyze(newMessage){
 	//Check all
 	for (var i = 0;i < keywords.length;i++) {
 		var word = keywords[i].word;
-		// console.log(i);
-		// console.log(word);
-
+		
 		if(endChatTerms.contains(newMessage)){
 			conversationOver = true;
 			newMessage = "goodbye";
@@ -336,8 +329,7 @@ function analyze(newMessage){
 				
 			//This picks a response
 			response = selectResponse(word);
-			console.log("response:[" + response + "]");
-
+			
 			//Check for wild card
 			if(response.indexOf("*") !== -1){
 				//Wild card exists so sub in the phrase
@@ -374,7 +366,7 @@ function analyze(newMessage){
 				//Ex. I had a dream about my dog. --> Have you ever fantasized about your dog while you were awake?
 				//But it only should work on the input not the response so you apply it to the inner parts.
 
-				console.log(response);
+				
 			}
 
 
@@ -453,7 +445,7 @@ function processInput(message){
  * replace back and forth. Ex. me->i i->me
  */
 function replaceWords(input){
-	console.log("replaceWords");
+	
 	var wordsForReplacement = [];
 	wordsForReplacement["i"] = "you";
 	wordsForReplacement["you"] = "i";
@@ -473,10 +465,7 @@ function replaceWords(input){
 	//Added in after testing
 	wordsForReplacement["always had"] = "always have";
 	
-	console.log("New Message:");
-	console.log(input);
-	console.log("--");
-
+	
 	var inputSplit = input.split(" ");
 
 	//Was having an overrite issue
@@ -525,7 +514,6 @@ function removePunctuation(message){
  */
 function determineResponseTime(){
 	var m = Math.floor(Math.random() * 2000) + 500;
-	//console.log(m);
 	return m;
 }
 /*
