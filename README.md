@@ -8,7 +8,7 @@
 This is an implementation of Eliza built in pure Javascript. I wanted to build it on a MERN stack but my starting point is in just JS. You can find a more indepth description below.
 
 
-ELIZA is an early natural language processing computer program created from 1964 to 1966[1] at the MIT Artificial Intelligence Laboratory by Joseph Weizenbaum. Created to demonstrate the superficiality of communication between man and machine, Eliza simulated conversation by using a 'pattern matching' and substitution methodology that gave users an illusion of understanding on the part of the program, but had no built in framework for contextualizing events. The most famous script, DOCTOR, simulated a Rogerian psychotherapist and used rules, dictated in the script, to respond with non-directional questions to user inputs. As such, ELIZA was one of the first chatterbots, but was also regarded as one of the first programs capable of passing the Turing Test.
+ELIZA is an early natural language processing computer program created from 1964 to 1966[1] at the MIT Artificial Intelligence Laboratory by Joseph Weizenbaum. Created to demonstrate the superficiality of communication between man and machine, Eliza simulated conversation by using a 'pattern matching' and substitution methodology that gave users an illusion of understanding on the part of the program, but had no built in framework for contextualizing events. The most famous script, DOCTOR, simulated a Rogerian psychotherapist and used rules, dictated in the script, to respond with non-directional questions to user inputs. As such, ELIZA was one of the first chatterbots, but was also regarded as one of the first programs capable of passing the Turing Test. (Taken from [Wiki](https://en.wikipedia.org/wiki/ELIZA))
 
 
 ### Running
@@ -99,7 +99,13 @@ function sendElizaNewMessage(newMessage){
 }
 ```
 
-The purpose of the analyze function is to find an appropriate response based on the input string, the weight of the keywords, the past chat messages, a degree of randomness and the engagement from the response. The program first looks for a keyword starting with the most heavily weighted and working down. If a term is found, and that term does not represent goodbye, it continues to find a response.
+The purpose of the analyze function is to find an appropriate response based on the input string, the weight of the keywords, the past chat messages, a degree of randomness and the engagement from the response. The program looks for a wildcard in the keyword or just the keyword and starts with the most heavily weighted and working down. 
+
+
+If a term is found and has a wildcard, it begins determining whether or not it matches the rules associated with that wildcard. An example is `i am *1-3* happy` which is similar to `i am happy` but a user may say something like `I am extremely happy`. The program checks to see that keywords `i`, `am`, and `happy` and are in the proper order. The program also verifies the wild card rules. In this example, there can be 1 to 3 words between `am` and `happy`. If there are more or less, it does not count as a found keyword. The implementation helps managed a variety of sentences like `i am extremely happy` works but `I am sad because I am not happy` does not. When the program recognizes the valid keywords with a wildcard, it replaces it with a keyword with a responses and continues to the `selectResponse` function. An example, `i am extremely happy` finds a response with `i am happy`.
+
+
+If a term is found without a wildcard, and that term does not represent goodbye, it continues to find a response.
 
 
 The `selectResponse` uses all attributes mentioned before to determine the optimal and most realistic response. It first gathers a list of possible responses for that keyword. The program then looks for a response containing a wild card subject or a response that has not been used before. If it matches either it adds a duplicate to the list of responses to increase the odds of them occurring. The use of a wild card makes it a more engaging conversation being able to reply with the context and content from the known information. In the example below it takes the response `Have you ever fantasized about * while you were awake?` and the program knows to replace the `*` with the incoming content.
@@ -167,15 +173,29 @@ function analyze(newMessage){
 			newMessage = "goodbye";
 		}
 
-		//Check to see if the keyword is in the sentence
-		//Ex. input is "Hi" or "This and more" or "Hi doc!"
-		if(newMessage.indexOf(word) != -1 && newMessage.length == word.length || newMessage.indexOf(word + " ") != -1 || newMessage.indexOf(" " + word) != -1){
-				
+		//Check for a wild card in the keyword
+		//If yes then its a keyword with an adjective like "i am *1-3* happy"
+		//Also checks if the newMessage contains all parts in proper order and following
+		//the rules
+		if(word.indexOf("*") != -1 && containsKeywordWithWildcard(newMessage, word) && !found){
+			
+			response = selectResponse(findBasicKeywordFromKeywordWithWildcard(word));
+			found = true;
+
+		}else if((newMessage.indexOf(word) != -1 && newMessage.length == word.length || newMessage.indexOf(word + " ") != -1 || newMessage.indexOf(" " + word) != -1) && !found){
+			//Check to see if the keyword is in the sentence
+			//Ex. input is "Hi" or "This and more" or "Hi doc!"
+			
 			//This picks a response
 			response = selectResponse(word);
 			
 			//Check for wild card
-			if(response.indexOf("*") !== -1){
+			found = true;
+
+		}
+		
+
+		if(found && response.indexOf("*") !== -1){
 				//Wild card exists so sub in the phrase
 				//Ex. I had a dream about my dog.
 				//Dream is the keyword
@@ -209,12 +229,9 @@ function analyze(newMessage){
 				//Changes the words and fixes the tenses.
 				//Ex. I had a dream about my dog. --> Have you ever fantasized about your dog while you were awake?
 				//But it only should work on the input not the response so you apply it to the inner parts.
-
-				
-			}
-
-
-			found = true;
+		}
+		if(found){
+			break;
 		}
 		
 
@@ -226,6 +243,14 @@ function analyze(newMessage){
 
 	return response;
 }
+
+/*
+ * Replaces the context of words, flipping
+ * the voice from the user to eliza.
+ * 
+ * It's split into an array so it doesn't
+ * replace back and forth. Ex. me->i i->me
+ */
 function replaceWords(input){
 	
 	var wordsForReplacement = [];
@@ -274,6 +299,55 @@ function replaceWords(input){
 	}
 
 	return updatedMessage;
+}
+
+
+
+/*
+ * Checks to see if the keyword exists properly 
+ * so "I am happy" is in proper order. Also 
+ * checks to against runs so only so many words
+ * are between "am" and "happy". So
+ * "I am extremely happy" but 
+ * "I am sad because I am happy" would fail.
+ */
+function containsKeywordWithWildcard(input, keywordsWithWildcardStr){
+	
+	var responseWildcardObj = getResponseWildcardInfo(keywordsWithWildcardStr);
+
+	var numberOfWordsInWildcard = 0;
+	var foundKeywords = 0;
+	var inputArray = input.split(" ");
+	for(var i = 0;i < inputArray.length;i++){
+		var currentWord = inputArray[i];
+		
+		//if the word is not a keyword, add it. and we are in the wildcard
+		if((foundKeywords >= responseWildcardObj.minNumWords && foundKeywords <= responseWildcardObj.maxNumWords) && !responseWildcardObj.keywords.contains(currentWord)){
+			numberOfWordsInWildcard++;
+		}
+
+		if(responseWildcardObj.keywords.length > 0 && currentWord == responseWildcardObj.keywords[0]){
+			//so first this would be "i" for ["i","am","happy"]
+			responseWildcardObj.keywords.remove(currentWord);
+			foundKeywords++;
+		}
+	}
+
+	//Doesnot have all keywords
+	//"I am * sad"
+	//"I am * happy"
+	//> I am extremely happy
+	//Sad should stop here cause its not valid
+	if(responseWildcardObj.keywords.length > 0){
+		//console.log("Not the correct keyword");
+		return false;
+	}
+	if(!(numberOfWordsInWildcard >= responseWildcardObj.minNumWords && numberOfWordsInWildcard <= responseWildcardObj.maxNumWords)){
+		//console.log("Does not follow wildcard rules");
+		return false;
+	}
+	
+	return true;
 }
 ```
 
