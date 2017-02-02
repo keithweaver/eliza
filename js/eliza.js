@@ -194,7 +194,8 @@ var synonyms = {
 	]
 };
 
-var initialMessages = ["Hi there, welcome to my office. I'm here to chat about anything. What's on your mind?", "How do you do. Please tell me your problem.","Please tell me what's been bothering you.", "Is something troubling you?", "Hello. How are you doing today?"];
+var initialMessages = ["Hello. How are you feeling today?"];
+//var initialMessages = ["Hi there, welcome to my office. I'm here to chat about anything. What's on your mind?", "How do you do. Please tell me your problem.","Please tell me what's been bothering you.", "Is something troubling you?", "Hello. How are you doing today?"];
 var endChatTerms = ["goodbye","I have to leave","I have to leave.","quit","bye","exit"];
 var chatHistory = [];
 var keywords = [];
