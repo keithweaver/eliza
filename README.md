@@ -5,7 +5,7 @@
 
 ### About
 
-This is an implementation of Eliza built in pure Javascript. I wanted to build it on a MERN stack but my starting point is in just JS.
+This is an implementation of Eliza built in pure Javascript. I wanted to build it on a MERN stack but my starting point is in just JS. You can find a more indepth description below.
 
 ### Running
 
@@ -23,6 +23,21 @@ Just open the index HTML file on your local machine, so [this one](./index.html)
 ### Why Javascript?
 
 I decided to build out my implementation of Eliza in Javascript because it can be run on most computers, using most browsers. There's no installation time and I include the dependencies in the index.html. I can also create a Github Pages demo forever.
+
+
+### File Structure
+
+```
+- index.html
+- README.md
+assets    css
+		  imgs
+
+js  	- actions.js 		// All UI related functions and actions
+		- notifications.js  // Allows me to create dynamic notifications for informing user
+		- demo.js 			// Runs a few example inputs
+		- eliza.js 			// The actual eliza implementation
+```
 
 
 ### Explanation
