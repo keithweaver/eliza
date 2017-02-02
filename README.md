@@ -1,6 +1,6 @@
 # eliza
 
-![Example of Eliza][./assets/imgs/example_shot.png]
+![Example of Eliza](./assets/imgs/example_shot.png)
 
 
 ### About
@@ -19,9 +19,10 @@ It's hosted on Github Pages at http://kweaver00.github.io/eliza/.
 Just open the index HTML file on your local machine, so [this one](./index.html).
 
 
-### Why JS?
 
-Because you can run a JS file on any browser or any computer.
+### Why Javascript?
+
+I decided to build out my implementation of Eliza in Javascript because it can be run on most computers, using most browsers. There's no installation time and I include the dependencies in the index.html. I can also create a Github Pages demo forever.
 
 
 ### Explanation
