@@ -42,12 +42,14 @@ js  	- actions.js 		// All UI related functions and actions
 
 ### Explanation
 
-The program begins by creating a list of keywords based on a pre-determined list of responses and a pre-determined list of similar words. An example of a response:
+The program has been built with two major steps; start and send new message. The start function runs once the page is loaded. It begins by creating a list of keywords based on a pre-determined list of responses and a pre-determined list of similar words. An example of a response:
 
 ```
+var responses = {
 "sorry" : {
 				 "weight" : 1,
 				 "responses" : ["Please don't apologize.", "Apologies are not necessary.", "Apologies are not required."]},
+...
 ```
 
 An example of a similar word:
@@ -56,12 +58,13 @@ var synonyms = {
 	"sorry" : [
 		"apologise"
 	],
+...
 ```
 
-The idea beginning, instead of repeating exact responses for multipe words like `youre` and `you're`. It uses the list of synonyms object to find responses in advance of any messages. After all potential keywords are added with their weight, the keyword list is sorted from on highest weighed to lowest. The weight better determines relevance towards particular subjects like family or computer. It next adds the first message to begin the conversation. *"Hello. How are you feeling today?"*
+The idea is instead of repeating exact responses for multipe words like `sorry` and `apologise` or `youre` and `you're`. It uses the list of synonyms object to find responses in advance of any messages. After all potential keywords are added with their weight, the keyword list is sorted from on highest weighed to lowest. The weight better determines relevance towards particular subjects like family or computer. It next adds the first message to begin the conversation. *"Hello. How are you feeling today?"*
 
 
-The program using jQuery to determine when the window loads and when there is a new input. A user simply has to type a new message into the textbox and press enter. This eliminates the need for continuous looping. When a user sends a new message to Eliza, the program verifies the textbox is not blank and adds to the UI before beginnig to analyze the string for a response.
+The program using jQuery to determine when the window loads and when there is a new input. A user simply has to type a new message into the textbox and presses enter. This eliminates the need for continuous looping. When a user sends a new message to Eliza, the program verifies the textbox is not blank and adds to the UI before beginnig to analyze the string for a response.
 
 
 ```
@@ -98,7 +101,7 @@ The purpose of the analyze function is to find an appropriate response based on 
 The `selectResponse` uses all attributes mentioned before to determine the optimum response to make Eliza as real as possible. It first gathers a list of possible responses for that keyword. The program then looks for a response with a wild card or a response that has not been used before. If it matches either it adds a duplicate to the list of responses to increase the odds of them occurring. The use of a wild card makes it a more engaging conversation being able to reply with the context and content from the known information. In the example below it takes the response `Have you ever fantasized about * while you were awake?` and the program knows to replace the `*` with the incoming content.
 
 
-**Example of a wild card:** (Dream is the keyword)
+Example of a wild card: (Dream is the keyword)
 
 ```
 User> I had a dream last night about my dog eating my homework
