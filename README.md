@@ -16,7 +16,7 @@ ELIZA is an early natural language processing computer program created from 1964
 You have two options:
 
 **Option #1:**
-It's hosted on Github Pages at http://kweaver00.github.io/eliza/.
+It's hosted on Github Pages at http://keithweaver.github.io/eliza/.
 
 
 **Option #2:**
